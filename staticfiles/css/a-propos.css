@@ -1,0 +1,77 @@
+
+.content-apropos {
+	max-width: 1400px;
+	margin: 0 auto;
+}
+
+.content-apropos > h2:first-child  {
+	font-weight: normal;
+	margin-left: 4%;
+	padding-left: 1%;
+	padding-top: 5%;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	width: 200px;
+}
+
+.content-apropos h2 {
+	font-weight: normal;
+}
+
+.apropos-flex {
+	display: flex;
+
+}
+
+.image-apropos {
+	width: 65%;
+}
+
+.image-apropos > img {
+	padding-left: 4%;
+	max-width: 90%;
+	height: auto;
+}
+
+.texte-apropos {
+	width: 35%;
+	padding-right: 2%;
+	text-align: justify;
+}
+
+blockquote {
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+  quotes: "\201C""\201D""\2018""\2019";
+  font-family: 'Lora'; 
+}
+
+blockquote:before {
+  color: #ccc;
+  content: open-quote;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+
+@media only screen and (max-width: 699px){
+
+.apropos-flex {
+	flex-direction: column-reverse;
+}
+
+.image-apropos {
+	width: auto;
+}
+
+.texte-apropos {
+	width: auto;
+	padding: 2%;
+}
+
+.content-apropos h2 {
+	display: none;
+}
+
+	}

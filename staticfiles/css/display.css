@@ -1,0 +1,170 @@
+a {
+	text-decoration: none;
+	color: #000000;
+	transition-duration: 0.2s;
+}
+
+a:hover {
+	text-decoration: none;
+	color: #E1E1E1;
+	transition-duration: 0.2s;
+}
+
+.content-display
+{
+	display: flex;
+	max-width: 1400px;
+	margin: 0 auto;
+	min-height: 100vh; /*Nécessaire pour utiliser au max la hauteur de la page et pas que le footer ne remonte sur le contenu de la page*/
+}
+
+.content-display-main
+{
+	width: 70%;
+	margin-right: 2%;
+	margin-left: 3%;
+	text-align: justify;
+}
+
+.content-display-main img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.content-display-side
+{
+	width: 22%;
+	margin-right: 3%;
+	height: 150px;
+}
+
+.image-front-display
+{
+    height: 450px;
+    width: auto;
+  	margin-top: 30px;
+  	background: no-repeat center center; 
+    background-size: cover;
+}
+
+.titre-display
+{
+	text-align: center;
+}
+
+.titre-display > h2
+{
+	color: #999999;
+    padding-top: 5px;
+    font-size: 130%;
+    font-weight: normal;
+}
+
+.a-propos-side-titre {
+	border-top-style: solid;
+	border-bottom-style: solid;
+	border-color: #E1E1E1;
+    border-width: 0.15em;
+	text-align: center;
+	font-size: 110%;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	letter-spacing: 1.5pt;
+}
+
+.menu-side-titre {
+	border-top-style: solid;
+	border-bottom-style: solid;
+	border-color: #E1E1E1;
+    border-width: 0.15em;
+	text-align: center;
+	font-size: 110%;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	letter-spacing: 1.5pt;
+}
+
+.menu-side-texte {
+	text-align: center;
+}
+
+.menu-side-texte-suite {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.a-propos-side-texte {
+	margin: 0px auto;
+	text-align: center;
+	background-image: url(img/front-page/fp1.jpeg);
+	margin-bottom: 10px;
+}
+
+
+.a-propos-side-texte img{
+	width: 70%;
+	height: auto;
+	filter: saturate(200%);
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+
+
+@media only screen and (max-width: 699px){
+.content-display
+{
+	display: flex;
+	flex-direction: column-reverse;
+	max-width: 1400px;
+	margin: 0 auto;
+	min-height: 0vh;
+}
+
+.content-display-main {
+	width: auto;
+	margin: 0px auto;
+}
+
+.content-display-side {
+	width: 90%;
+	margin: 0px auto;
+	height: auto;
+}
+
+.menu-side-texte {
+	display: flex;
+}
+
+.menu-side-texte-suite {
+	padding: 2%;
+	margin: 0px auto;
+	margin-top: 5px;
+}
+
+.a-propos-side-titre {
+	display: none;
+}
+
+.a-propos-side-texte {
+	display: none;
+}
+
+}
+
+@media only screen and (min-width: 1500px){
+
+.image-front-display
+{
+    height: 650px;
+    width: auto;
+  	margin-top: 30px;
+  	background: no-repeat center center; 
+    background-size: cover;
+}

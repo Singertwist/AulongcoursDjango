@@ -1,0 +1,8 @@
+Sujet:
+{{ sujet }}
+
+Email:
+{{ envoyeur }}
+
+Content:
+{{ message|safe|striptags }}

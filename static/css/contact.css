@@ -1,0 +1,151 @@
+.image-contact
+{
+    display: flex;
+    align-items: center;
+    background: url("../img/contact/P1010361.jpg") center center no-repeat;
+    background-size: cover;
+    width: auto;
+    height: 450px;
+    margin-top: 15px;
+}
+
+.contact
+{
+	text-align: center;
+	width: 98%;
+	margin-left: 1%;
+}
+
+.contact h1
+{
+    font-size: 300%;
+    font-weight: normal;
+    margin: 0;
+    color: #FFFFFF;
+}
+
+
+form
+{
+    text-align: center
+}
+
+label
+{
+	display: block;
+}
+
+input
+{
+	margin-top: 5px;
+}
+
+input[type="text"] 
+{
+    width: 40%;
+    min-width: 250px;
+    height: 35px;
+    border-radius: 5px;
+    border: 1px solid #CACACA;
+}
+
+input[type="email"] 
+{
+    width: 40%;
+    min-width: 250px;
+    height: 35px;
+    border-radius: 5px;
+    border: 1px solid #CACACA;
+}
+
+input[type="submit"] 
+{
+    width: 85px;
+    min-width: 250px;
+    height: 50px;
+    border-radius: 5px;
+    border: 1px solid #959595;
+    color: #FFFFFF;
+    font-size: 13px;
+    background-color: #959595;
+    cursor: hand;
+    transition-duration: 0.5s;
+}
+
+input[type="submit"]:hover
+{
+    cursor: pointer; 
+    cursor: hand;
+    border: #222222;
+    background-color: #222222;
+    transition-duration: 0.5s;
+}
+
+textarea
+{
+	width: 60%;
+	height: 200px;
+	border-radius: 5px;
+    border: 1px solid #CACACA;
+}
+
+.separation-contact
+{
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+    font-size: 150%;
+}
+
+.separation-contact img
+{
+    display: block;
+    margin-left: auto;
+    margin-right: auto; 
+}
+
+/*Personnalisation des erreurs du formulaire*/
+form ul
+{
+    margin-left:0;
+    padding-left:0;
+    width: 30%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+form li
+{
+    text-indent: 0px;
+    color: #AB4C68;
+    background-color: #E9C6C6;
+    list-style-type: none;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.succes-contact
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+    margin-top: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #D1EAC7;
+    color: #3C7661;
+    text-align: center;
+}
+
+@media only screen and (min-width: 1500px){
+
+.image-contact
+{
+    display: flex;
+    align-items: center;
+    background: url("../img/contact/P1010361.jpg") center center no-repeat;
+    background-size: cover;
+    width: auto;
+    height: 650px;
+    margin-top: 15px;
+}

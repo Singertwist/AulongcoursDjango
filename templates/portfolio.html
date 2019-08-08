@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% load static %}
+{% load thumbnail %}
+
+{% block titre %} 
+Aulongcours.net - {{ portfolio.article.pays}} - {{ portfolio.article.title}}
+{% endblock %}        
+
+{% block portfolio %}       
+
+		<div class="image-front-display" style="background-image:url({{ portfolio.article.image.url }});"> 
+
+		{% comment %} Affichage dynamique en CSS de l'image {% endcomment %}
+			
+		</div>
+		
+
+		<div class="titre-display">
+			<h2>{{ portfolio.article.timestamp|date:"d E Y" }} / {{ portfolio.article.pays}} </h2>
+			<h1>{{ portfolio.article.title}}</h1>
+		</div>	
+
+        <div class="content-display">
+        	
+        	<div class="content-display-main">
+
+            <div class="content-display-main-portfolio">
+                    
+                
+                  {% for photo in image_portfolio %}  
+                
+                  <div class="image-portfolio">
+                {% thumbnail photo.image "x2000" crop="center" as im %} 
+                  <a class="example-image-link" href="{{ im.url }}" data-lightbox="example-set" data-title="{{photo.title}}">
+                {% endthumbnail %} 
+                {% thumbnail photo.image "300x300" crop="center" as im %}        
+                    <img class="example-image" src="{{ im.url }}" alt="{{ photo.title }}"/>
+                {% endthumbnail %}    
+
+                  </a>
+                  <p>{{photo.title}}</p>
+                  </div>
+
+                {% empty %}
+
+                    <p>Aucun portfolio.</p>
+                    
+                {% endfor %}          
+
+            </div>
+
+            <div class="pagination">
+                <span class="step-links">
+                    {% if image_portfolio.has_previous %}
+                        <a href="?page={{ image_portfolio.previous_page_number }}"> << Précédent</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{ image_portfolio.number }} sur {{ image_portfolio.paginator.num_pages }}.
+                    </span>
+
+                    {% if image_portfolio.has_next %}
+                        <a href="?page={{ image_portfolio.next_page_number }}">Suivant >></a>
+                    {% endif %}
+                </span>
+            </div>            
+
+        	</div>
+
+
+            <div class="content-display-side">
+                <div class="menu-side-titre">MENU de  l'ARTICLE</div>
+
+                <div class="menu-side-texte">
+                    <div class="menu-side-texte-suite"><a href="{% url 'article' portfolio.article.slug portfolio.article.id %}">Les Étapes</a></div>
+                    <div class="menu-side-texte-suite"><a href="{% url 'portfolio' portfolio.article.slug portfolio.article.id %}">Le Portfolio</a></div>
+                    {% if map.id != None %} 
+                    <div class="menu-side-texte-suite"><a href="{% url 'map' slug.slug portfolio.id %}">La Carte</a></div>
+                    {% else %}
+                    {% endif %}
+                    {% if budget.id != None %} 
+                    <div class="menu-side-texte-suite"><a href="{% url 'budget' afficher.slug afficher.id %}">Le Budget</a></div>
+                    {% else %}
+                    {% endif %}                    
+                </div>
+
+                <div class="a-propos-side-titre">A PROPOS</div>
+                <div class="a-propos-side-texte"><img src="{% static "img/autres/P1010545.jpg" %}" alt="image-a-propos"/>« Sont réputés être voyages de long cours les voyages de France en Moscovie, Groenland, Canada, aux bancs et îles de Terre Neuve et autres côtes et îles d'Amérique, au Cap Vert, côte de Guinée et tous autres qui seront au-delà du tropique » (Colbert, 1681). <a href="{% url 'apropos' %}">Lire la suite...</a></div>
+
+            </div>
+        	</div>
+
+        
+{% endblock %}        

@@ -1,0 +1,82 @@
+{% load static %}
+{% load thumbnail %}
+
+<!doctype html>
+<html lang="fr">
+    <head>
+      <meta charset="utf-8">
+      <title>{% block titre %} {% endblock %}</title>
+      <link rel="icon" type="image/png" href="{% static "img/favicon.png" %}" />
+      <!--[if IE]><link rel="shortcut icon" type="image/x-icon" href="{% static "img/favicon.ico" %}" /><![endif]-->
+      <link rel="stylesheet" href="{% static "css/index.css" %} ">
+      <link rel="stylesheet" href="{% static "css/lightbox.css" %} ">
+      <link rel='stylesheet' id='camera-css'  href="{% static "css/camera.css"%}" type='text/css' media='all'> 
+      <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0" /> <!-- Pour les périphériques mobiles afin que la largeur di site s'adapte à la largeur de l'écran mobile -->
+    </head>
+    <body>
+
+<div class="site-pusher"> <!-- nécessaire pour pousser le site quand menu petite résolution -->
+<div class="container"> <!-- Nécessaire pour flex box -->
+
+    <header class="header">
+        <a href="" class="header__icon"></a>
+        <a href="" class="header__logo"></a>
+        <nav class="menu">
+                <a href="{% url 'home' %}">Accueil </a>
+                <a href="{% url 'apropos' %}">A Propos</a>
+                <a href="{% url 'categorie_display' %}">Catégories</a>
+                <a href="{% url 'contact' %}">Contact</a>
+        </nav>
+    </header>
+
+<div class="site-content">
+        <div class="logo-front-page"> 
+                <a href="{% url 'home' %}"><img src="{% static "img/logo.png" %}" alt="logo-site"></a>
+                <h1>Au Long Cours</h1>
+                <h2>Un autre regard sur le monde</h2>
+        </div>  
+
+        {% block index %} {% endblock %}
+        {% block article %} {% endblock %}
+        {% block portfolio %} {% endblock %}
+        {% block categorie %} {% endblock %}
+        {% block souscategorie %} {% endblock %}
+        {% block apropos %} {% endblock %}
+        {% block map %} {% endblock %}
+        {% block contact %} {% endblock %}
+
+        <footer>
+        <p>Au Long Cours <br/>© {% now "Y" %} - Tous droits réservés</p>
+        </footer> 
+</div>    <!-- Nécessaire pour permettre de rentrer le menu en cliquant n'importe où sur la page -->
+
+</div>
+
+    <div class="site-cache" id="site-cache"></div>
+</div>
+<!-- Début chargement javascript -->
+<!-- Script pour le menu responsive -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> 
+<script type="text/javascript" src="{% static "js/responsive-menu/app.js" %}"></script>
+<!-- Fin script menu responsive -->
+<!-- Fin chargement javascript-->
+<!-- Script pour le slider -->
+<script type='text/javascript' src="{% static "js/galerie/lightbox-plus-jquery.min.js"%}"></script> 
+<script type='text/javascript' src="{% static "js/slider/jquery.min.js"%}"></script>
+<script type='text/javascript' src="{% static "js/slider/jquery.mobile.customized.min.js"%}"></script>
+<script type='text/javascript' src="{% static "js/slider/jquery.easing.1.3.js"%}"></script>
+<script type='text/javascript' src="{% static "js/slider/camera.min.js"%}"></script>
+<script>
+    jQuery(function(){
+
+        jQuery('#camera_wrap_1').camera({
+            thumbnails: false,
+            height: '40%',
+            pagination: true,
+            loader: 'bar'
+        });
+    });
+</script>
+<!-- Fin script pour le slider -->
+    </body>
+</html>

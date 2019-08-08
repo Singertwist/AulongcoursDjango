@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+{% load thumbnail %}
+
+{% block titre %} 
+Aulongcours.net - Catégories
+{% endblock %}        
+
+{% block categorie %}       
+
+		<div class="image-categorie"></div>
+		
+		<div class="titre-display">
+			<h1>Catégories</h1>  
+		</div>	
+        
+        <div class="content-display">
+            <div class="content-display-main">              
+
+                {% for categorie in categorie %}
+                        <h3 id="{{categorie.nom_categorie|cut:" "}}">{{categorie.nom_categorie}}</h2>
+                        <div class="categories">
+                        
+                                {% for subcategorie in categorie.subcategorie_set.all %}
+                                <div class="sous-categories">
+                                    <a href="{% url 'souscategorie_display' subcategorie.slug subcategorie.id %}">
+                                    {% thumbnail subcategorie.image "250x250" crop="center" as im %}
+                                    <img src="{{im.url }}" alt="{{ subcategorie.nom_subcategorie }}"/>
+                                    {% endthumbnail %}
+                                    </a>
+                                   
+                                <p><a href="{% url 'souscategorie_display' subcategorie.slug subcategorie.id %}">{{subcategorie.nom_subcategorie }}</a></p>
+                                </div>
+                                {% empty %}
+
+                                   <p>Aucune sous catégorie.</p> 
+
+                                {% endfor %}
+
+                        </div>
+                        {% empty %}
+
+                            <p>Aucune catégorie.</p>
+                        {% endfor %} 
+
+            </div>
+
+
+            <div class="content-display-side">
+                <div class="menu-side-titre">MENU</div>
+
+                <div class="menu-side-texte">
+                    {% for categorie in categorie %}
+                    <div class="menu-side-texte-suite"><a href="#{{categorie.nom_categorie|cut:" "}}">{{categorie.nom_categorie}}</a></div>
+                    {% empty %}
+
+                            <p>Aucune catégorie.</p>
+                    {% endfor %}         
+                </div>
+
+                <div class="a-propos-side-titre">A PROPOS</div>
+                <div class="a-propos-side-texte"><img src="{% static "img/autres/P1010545.jpg" %}" alt="image-a-propos"/>« Sont réputés être voyages de long cours les voyages de France en Moscovie, Groenland, Canada, aux bancs et îles de Terre Neuve et autres côtes et îles d'Amérique, au Cap Vert, côte de Guinée et tous autres qui seront au-delà du tropique » (Colbert, 1681). <a href="{% url 'apropos' %}">Lire la suite...</a></div>
+
+            </div>
+            </div>
+
+{% endblock %}        

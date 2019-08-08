@@ -1,0 +1,272 @@
+@import url("a-propos.css");
+@import url("display.css");
+@import url("contact.css");
+@import url("categorie.css");
+@import url("a-propos.css");
+
+
+@font-face
+	{
+	    font-family: 'Lato';
+	    src: url('fonts/Lato/LatoLatin-Light.ttf');
+	}
+@font-face
+	{
+	    font-family: 'Lemon';
+	    src: url('fonts/Lemon/Lemon-Tuesday.otf');
+	}
+
+@font-face
+    {
+        font-family: 'Lora';
+        src: url('fonts/Lora/Lora-Regular.ttf');
+    }    	
+
+	body
+	{
+	    margin: 0;
+	    padding: 0;
+	    font-family: 'Lato';
+	    height: 100%;
+	}
+
+	a {
+		text-decoration: none;
+	}
+
+/*Menu */
+	.header{
+		position: fixed;
+		left: 0;
+		right:0;
+		height: 66px;
+		line-height: 66px;
+		background-color: #FFFFFF;
+		z-index: 300;
+	}
+
+	.site-content{
+		padding-top: 66px;
+	}
+
+	.menu {
+		float: left;
+	}
+
+	.menu > a
+	{
+		padding: 0 25px;
+		color: #000000;
+		transition-duration: 0.3s;
+	}
+
+	.menu > a:hover
+	{
+		color: #E1E1E1;
+		transition-duration: 0.2s;
+	}
+
+
+
+/*Fin menu */
+	.logo-front-page {
+		text-align: center;
+	}
+
+	.logo-front-page img{ 
+		max-width: 20%;
+		height: auto;
+		}
+
+	.logo-front-page h1 {
+		font-size: 320%;
+		margin: 0;
+		padding: 0;
+	}
+
+	.logo-front-page h2 {
+		color: #3C3C3C;
+		font-family: 'Lemon';
+		margin: 0;
+		padding: 15px 0 0 0;
+	}
+
+	 .slider
+    {
+        margin-top: 30px;
+        padding-bottom: 43%;
+        width: 100%;
+        margin-left: 0%;
+        margin-right: 0%;
+        background-color: white;
+        text-align: center;
+    }
+
+    .content-front-page > h2
+    {
+    	font-family: 'Lemon';
+    	text-align: center;
+    	font-size: 250%;
+    }
+
+    .container-article-front-page {
+    	display: flex;
+    	flex-wrap: wrap;
+    	width: auto;
+    	justify-content: center;
+    }
+
+    .articles-front-page {
+    	width: 40%;
+    	min-width: 350px;
+    	margin: 35px;
+    	margin-bottom: 0px;
+    }
+
+    .articles-front-page > img {
+    	max-width: 100%;
+		height: auto;
+		transition-duration: 1s;
+		-webkit-filter: grayscale(0%);
+    }
+
+    .articles-front-page > img:hover {
+    	max-width: 100%;
+		height: auto;
+		-webkit-filter: grayscale(100%);
+		transition-duration: 0.8s;
+    }
+
+    .articles-front-page .date-articles-front-page{
+    	color: #999999;
+    	text-align: center;
+    	padding-top: 5px;
+    }
+
+    .articles-front-page > h2 {
+    	font-size: 150%;
+    	text-align: center;
+    }
+
+    .articles-front-page a {
+        text-decoration: none;
+        color: #999999;
+        transition-duration: 0.2s;
+    }
+
+    .articles-front-page a:hover {
+        text-decoration: none;
+        color: #E1E1E1;
+        transition-duration: 0.2s;
+    }
+
+    .pagination {
+        margin-top: 15px;
+        text-align: center;
+    }
+
+    .pagination a {
+        color: #000000;
+    }
+
+    .pagination a:hover {
+        color: #999999;
+    }
+
+    footer {
+    	margin-top: 25px;
+    	margin-left: 5%;
+    	margin-right: 5%;
+    	border-top-style: solid;
+    	border-top-width: 1px;
+    	text-align: center;
+    }
+
+
+@media only screen and (max-width: 699px){
+
+    .site-pusher
+    {
+        transform: translateX(0px);
+        transition-duration: 0.3s;
+        height: 100%;
+    }
+
+    .header__icon{
+        display: block;
+        float: left;
+        width: 35px;
+        height: 50px;
+        cursor: pointer;
+    }
+    .header__icon:after {
+        content: '';
+        position: fixed; /*ancienne valeur: position: absolute */
+        display: block;
+        width: 16px;
+        height: 0;
+        top: 16px;
+        left: 15px;
+        box-shadow: 0 10px 0 1px black, 0 16px 0 1px black, 0 22px 0 1px black;
+    }
+    .menu{
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 150px;
+        transform: translateX(-150px);
+        transition-duration: 0.3s;
+        text-align: center;
+    }
+
+    .with--sidebar .site-pusher
+    {
+        transform: translateX(150px);
+    }
+
+    .with--sidebar .site-pusher .site-cache
+    {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background-color: black;
+        opacity: 0.1;
+    }
+
+    .contenu{
+    	padding-top: 66px;
+    }
+
+    	.logo-front-page img{ 
+		max-width: 35%;
+		height: auto;
+		}
+
+	.logo-front-page h1 {
+		font-size: 220%;
+		margin: 0;
+		padding: 0;
+	}
+
+	.logo-front-page h2 {
+		color: #3C3C3C;
+		font-family: 'Lemon';
+		margin: 0;
+		padding: 15px 0 0 0;
+	}
+
+}
+
+@media screen and (min-width: 700px) {
+
+
+
+}
+
+@media all and (min-width: 980px) {
+
+
+}

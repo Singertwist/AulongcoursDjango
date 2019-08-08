@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+{% load static %}
+
+
+{% block titre %} 
+Aulongcours.net - Blog de voyage 
+{% endblock %}        
+
+{% block index %}       
+
+
+        <div class="slider">
+            <div class="fluid_container">
+                <div class="camera_wrap camera_charcoal_skin" id="camera_wrap_1">
+                  
+                {% for article in tous_articles|slice:":7" %}
+                 <div data-thumb="{{ article.image.url }}" data-src="{{ article.image.url }}">
+                    <div class="camera_caption fadeFromBottom">
+                        {{ article.content|striptags|safe|truncatewords:20 }}. <a href="{% url 'article' article.slug article.id %}">Lire la suite</a>
+                    </div>
+                    </div>
+               
+                {% empty %}
+
+                <p>Aucun article.</p>
+                    
+                {% endfor %}   
+                
+                </div>
+            </div><!-- #camera_wrap_1 -->
+        </div><!-- .fluid_container -->
+        </div>
+
+
+
+        <div class="content-front-page">
+
+
+            <h2>Derniers articles</h2>
+
+            <div class="container-article-front-page">
+                
+            {% for article in tous_articles %}
+            
+            <div class="articles-front-page"> 
+                {% thumbnail article.image "1000x750" crop="center" as im %}            
+                <img src="{{ im.url }}">
+                {% endthumbnail %}      
+                <div class="date-articles-front-page"> Le {{ article.timestamp|date:"d E, Y" }} / {{ article.pays }}</div>
+                <h2>{{ article.title }}</h2>
+                <p>{{ article.content|striptags|safe|truncatewords:30 }} <a href="{% url 'article' article.slug article.id %}">Lire la suite</a></p>
+            </div>
+
+            {% empty %}
+
+                <p>Aucun article.</p>
+
+            {% endfor %}
+
+            </div>
+            <div class="pagination">
+                <span class="step-links">
+                    {% if tous_articles.has_previous %}
+                        <a href="?page={{ tous_articles.previous_page_number }}"> << Précédent</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{ tous_articles.number }} sur {{ tous_articles.paginator.num_pages }}.
+                    </span>
+
+                    {% if tous_articles.has_next %}
+                        <a href="?page={{ tous_articles.next_page_number }}">Suivant >></a>
+                    {% endif %}
+                </span>
+            </div>
+
+        </div>
+
+{% endblock %}        

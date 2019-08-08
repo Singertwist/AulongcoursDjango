@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block titre %} 
+Aulongcours.net - Contact
+{% endblock %}   
+
+{% block contact %}  
+
+	<div class="image-contact"> 
+
+		<div class="contact"> <h1>Contactez-nous</h1></div>
+
+	</div>
+
+
+{% if envoi %}<div class="succes-contact">Votre message a bien été envoyé !</div>{% endif %}
+
+
+	<form action="{% url 'contact' %}" method="post">
+
+	    {% csrf_token %}
+
+	    {{ form.as_p }}
+
+	    <input type="submit" value="Envoyer" />
+
+	</form>
+
+{% endblock %}   

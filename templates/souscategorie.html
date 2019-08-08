@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+{% load thumbnail %}
+
+{% block titre %} 
+Aulongcours.net - {{souscategorie.nom_subcategorie}}
+{% endblock %}      
+
+{% block souscategorie %}    
+
+		<div class="image-front-display" style="background-image:url({{ souscategorie.image.url }});"> 
+		{% comment %} Affichage dynamique en CSS de l'image {% endcomment %}
+			
+		</div>
+
+		<div class="titre-display">
+			<h1>{{ afficher.title}}</h1>  
+		</div>	
+
+        <div class="content-display">
+            <div class="content-display-main">              
+            	<div class="categories">
+            	{% for article in article_souscategorie %}
+		            <div class="articles-front-page">
+                        {% thumbnail article.image "1000x750" crop="center" as im %}              
+		                <img src="{{ im.url }}">
+                        {% endthumbnail %}     
+		                <div class="date-articles-front-page"> Le {{ article.timestamp|date:"d E, Y" }} / {{ article.pays }}</div>
+		                <h2>{{ article.title }}</h2>
+		                <p>{{ article.content|striptags|safe|truncatewords:30 }} <a href="{% url 'article' article.slug article.id %}">Lire la suite</a></p>
+		            </div>
+				{% empty %}
+					<p>Aucun article</p>
+				{% endfor %}
+			</div>	
+
+			
+			<div class="pagination">
+                <span class="step-links">
+                    {% if article_souscategorie.has_previous %}
+                        <a href="?page={{ article_souscategorie.previous_page_number }}"> << Précédent</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{ article_souscategorie.number }} sur {{ article_souscategorie.paginator.num_pages }}.
+                    </span>
+
+                    {% if article_souscategorie.has_next %}
+                        <a href="?page={{ article_souscategorie.next_page_number }}">Suivant >></a>
+                    {% endif %}
+                </span>
+            </div>
+            </div>
+
+
+            <div class="content-display-side">
+                <div class="a-propos-side-titre">A PROPOS</div>
+                <div class="a-propos-side-texte"><img src="{% static "img/autres/P1010545.jpg" %}" alt="image-a-propos"/>« Sont réputés être voyages de long cours les voyages de France en Moscovie, Groenland, Canada, aux bancs et îles de Terre Neuve et autres côtes et îles d'Amérique, au Cap Vert, côte de Guinée et tous autres qui seront au-delà du tropique » (Colbert, 1681). <a href="{% url 'apropos' %}">Lire la suite...</a></div>
+            </div>
+        </div>
+
+{% endblock %}   

@@ -1,0 +1,19 @@
+<h1>Commentaires</h1>
+
+<form method="post" action="" >
+{{ form.as_p }}
+
+{% csrf_token %}
+<input type="submit" value="Poster un commentaire">
+
+            {% for commentaires in tous_commentaires %}
+
+            <h2>{{ commentaires.pseudo }}</h2>
+                            
+            {% empty %}
+
+                <p>Aucun commentaire</p>
+
+            {% endfor %}
+
+</form>

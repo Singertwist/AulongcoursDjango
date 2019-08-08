@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block titre %} 
+Aulongcours.net - {{ afficher.pays}} - {{ afficher.title}}
+{% endblock %}        
+
+{% block article %}       
+
+		<div class="image-front-display" style="background-image:url({{ afficher.image.url }});"> 
+		{% comment %} Affichage dynamique en CSS de l'image {% endcomment %}
+			
+		</div>
+		
+		<div class="titre-display">
+			<h2>{{ afficher.timestamp|date:"d E Y" }} / {{ afficher.pays}} </h2>
+			<h1>{{ afficher.title}}</h1>  
+		</div>	
+
+        <div class="content-display">
+        	
+        	<div class="content-display-main">       		
+
+        			{{ afficher.content|safe}}
+
+        	</div>
+
+
+            <div class="content-display-side">
+                <div class="menu-side-titre">MENU de  l'ARTICLE</div>
+
+                <div class="menu-side-texte">
+                    <div class="menu-side-texte-suite"><a href="{% url 'article' afficher.slug afficher.id %}">Les Étapes</a></div>
+                    {% if portfolio.id != None %}
+                    <div class="menu-side-texte-suite"><a href="{% url 'portfolio' afficher.slug afficher.id %}">Le Portfolio</a></div>
+                    {% else %}
+                    {% endif %}
+                    {% if map.id != None %}  
+                    <div class="menu-side-texte-suite"><a href="{% url 'map' afficher.slug afficher.id %}">La Carte</a></div>
+                    {% else %}
+                    {% endif %}
+                    {% if budget.id != None %} 
+                    <div class="menu-side-texte-suite"><a href="{% url 'budget' afficher.slug afficher.id %}">Le Budget</a>
+                    </div>
+                    {% else %}
+                    {% endif %}
+                </div>
+
+                <div class="a-propos-side-titre">A PROPOS</div>
+                <div class="a-propos-side-texte"><img src="{% static "img/autres/P1010545.jpg" %}" alt="image-a-propos"/>« Sont réputés être voyages de long cours les voyages de France en Moscovie, Groenland, Canada, aux bancs et îles de Terre Neuve et autres côtes et îles d'Amérique, au Cap Vert, côte de Guinée et tous autres qui seront au-delà du tropique » (Colbert, 1681). <a href="{% url 'apropos' %}">Lire la suite...</a></div>
+
+            </div>
+        	</div>
+
+
+{% endblock %}        

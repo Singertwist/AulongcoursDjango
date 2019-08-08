@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% load static %}
+{% load thumbnail %}
+
+{% block titre %} 
+Aulongcours.net - {{ map.article.pays}} - {{ map.article.title}}
+{% endblock %}        
+
+{% block map %}
+ <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>       
+		<div class="image-front-display" style="background-image:url({{ map.article.image.url }});"> 
+
+		{% comment %} Affichage dynamique en CSS de l'image {% endcomment %}
+			
+		</div>
+		
+
+		<div class="titre-display">
+			<h2>{{ map.article.timestamp|date:"d E Y" }} / {{ map.article.pays}} </h2>
+			<h1>{{ map.article.title}}</h1>
+		</div>	
+
+        <div class="content-display">
+        	
+        	<div class="content-display-main">
+
+            <p> Et voici un petit aperçu des différents endroits, visités. Il vous suffit juste de cliquer sur les icônes de la carte pour connaîtres les adresses mentionnées dans l'article, les coups de coeurs, les hébergments...</p>
+            <p>Mais avant toute chose, voici les étapes de notre séjour :</p>
+
+            {% for coordonnees in coordonnees_map %}
+            <h2 class="map">Etape {{coordonnees.etape}} : {{coordonnees.nom}} </h2>
+            
+            {% if coordonnees.adresse_complète != "" %}<p class="map-texte">Adresse : {{coordonnees.adresse_complète}} {% else %} {% endif %}
+
+            {% if coordonnees.commentaire_adresse != "" %}<br/>Avis : {{coordonnees.commentaire_adresse}}</p> {% else %} {% endif %}
+            {% empty %}{% endfor %}
+            </p>
+            
+
+
+            <div id="map" style="width: 1000px; height:700px;"></div>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJzpEGvhfIdRaw-GfP4Mt8OtW8yhlTuOA&callback=initMap"
+  type="text/javascript"></script>
+              <script type="text/javascript">
+                var locations = [
+                  {% for coordonnees in coordonnees_map %}['{{coordonnees.nom}}',{{coordonnees.position}}, {{coordonnees.etape}}],{% empty %}{% endfor %}
+                ];
+
+                var map = new google.maps.Map(document.getElementById('map'), {
+                  zoom: 5,
+                  styles: [
+                  {"featureType":"water","elementType":"geometry.fill","stylers":[{"color":"#d3d3d3"}]},{"featureType":"transit","stylers":[{"color":"#808080"},{"visibility":"off"}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"visibility":"on"},{"color":"#b3b3b3"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"road.local","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#ffffff"},{"weight":1.8}]},{"featureType":"road.local","elementType":"geometry.stroke","stylers":[{"color":"#d7d7d7"}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#ebebeb"}]},{"featureType":"administrative","elementType":"geometry","stylers":[{"color":"#a7a7a7"}]},{"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"landscape","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#efefef"}]},{"featureType":"road","elementType":"labels.text.fill","stylers":[{"color":"#696969"}]},{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"visibility":"on"},{"color":"#737373"}]},{"featureType":"poi","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road.arterial","elementType":"geometry.stroke","stylers":[{"color":"#d6d6d6"}]},{"featureType":"road","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"color":"#dadada"}]}
+                  ],
+                  center: new google.maps.LatLng({% with coordonnees_map|first as coordonnees %}{{coordonnees.position}}{% endwith %}),
+                  mapTypeId: google.maps.MapTypeId.ROADMAP
+                });
+
+                var infowindow = new google.maps.InfoWindow();
+
+                var marker, i;
+
+                for (i = 0; i < locations.length; i++) {  
+                  marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                    map: map
+                  });
+
+                  google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                    return function() {
+                      infowindow.setContent(locations[i][0]);
+                      infowindow.open(map, marker);
+                    }
+                  })(marker, i));
+                }
+                </script>   
+
+
+        	</div>
+
+
+            <div class="content-display-side">
+                <div class="menu-side-titre">MENU de  l'ARTICLE</div>
+
+                <div class="menu-side-texte">
+                    <div class="menu-side-texte-suite"><a href="{% url 'article' map.article.slug map.article.id %}">Les Étapes</a></div>
+                    {% if portfolio.id != None %}
+                    <div class="menu-side-texte-suite"><a href="{% url 'portfolio' map.article.slug map.article.id %}">Le Portfolio</a></div>
+                    {% else %}
+                    {% endif %}
+                    {% if map.id != None %}  
+                    <div class="menu-side-texte-suite"><a href="{% url 'map' map.article.slug map.id %}">La Carte</a></div>
+                    {% else %}
+                    {% endif %}
+                    {% if budget.id != None %} 
+                    <div class="menu-side-texte-suite"><a href="{% url 'budget' map.article.slug map.article.id %}">Le Budget</a></div>
+                    {% else %}
+                    {% endif %}                     
+                </div>
+
+                <div class="a-propos-side-titre">A PROPOS</div>
+                <div class="a-propos-side-texte"><img src="{% static "img/autres/P1010545.jpg" %}" alt="image-a-propos"/>« Sont réputés être voyages de long cours les voyages de France en Moscovie, Groenland, Canada, aux bancs et îles de Terre Neuve et autres côtes et îles d'Amérique, au Cap Vert, côte de Guinée et tous autres qui seront au-delà du tropique » (Colbert, 1681). <a href="{% url 'apropos' %}">Lire la suite...</a></div>
+
+            </div>
+        	</div>
+
+        
+{% endblock %}        

@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block titre %} 
+Aulongcours.net - Budget - {{ budget.article.title}}
+{% endblock %}        
+
+{% block article %} 
+
+		<div class="image-front-display" style="background-image:url({{ budget.article.image.url }});"> 
+		{% comment %} Affichage dynamique en CSS de l'image {% endcomment %}
+			
+		</div>
+		
+		<div class="titre-display">
+			<h2>{{ budget.article.timestamp|date:"d E Y" }} / {{ budget.article.pays}} </h2>
+			<h1>{{ budget.article.title}}</h1>  
+		</div>	
+
+        <div class="content-display">
+        	
+        	<div class="content-display-main">       		
+            
+            <canvas id="myChart" max-width="400px" max-height="400px"></canvas>
+    
+
+                    {% for chiffres in chiffres_budget %}  
+
+        			     {{chiffres.catégorie_dépenses}};
+                    {% empty %}
+
+                        <p>Aucune dépense.</p>
+                        
+                    {% endfor %}  
+        	
+
+            </div>
+
+
+            <div class="content-display-side">
+                <div class="menu-side-titre">MENU de  l'ARTICLE</div>
+
+                <div class="menu-side-texte">
+                    <div class="menu-side-texte-suite"><a href="{% url 'article' budget.article.slug budget.article.id %}">Les Étapes</a></div>
+                    {% if portfolio.id != None %}
+                    <div class="menu-side-texte-suite"><a href="{% url 'portfolio' budget.article.slug budget.id %}">Le Portfolio</a></div>
+                    {% else %}
+                    {% endif %}
+                    {% if map.id != None %}  
+                    <div class="menu-side-texte-suite"><a href="{% url 'map' budget.article.slug budget.id %}">La Carte</a></div>
+                    {% else %}
+                    {% endif %}
+                    <div class="menu-side-texte-suite"><a href="{% url 'budget' budget.article.slug budget.id %}"">Le Budget</a></div>
+                </div>
+
+                <div class="a-propos-side-titre">A PROPOS</div>
+                <div class="a-propos-side-texte"><img src="{% static "img/autres/P1010545.jpg" %}" alt="image-a-propos"/>« Sont réputés être voyages de long cours les voyages de France en Moscovie, Groenland, Canada, aux bancs et îles de Terre Neuve et autres côtes et îles d'Amérique, au Cap Vert, côte de Guinée et tous autres qui seront au-delà du tropique » (Colbert, 1681). <a href="{% url 'apropos' %}">Lire la suite...</a></div>
+
+            </div>
+        	</div>
+            <script src="{% static "js/chart/chart.js"%}"> </script>
+        
+            <script type="text/javascript">
+            var ctx = document.getElementById("myChart");
+            var myChart = new Chart(ctx, {
+            type: 'polarArea',
+            data: {
+                labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [12, 19, 3, 5, 2, 3],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
+            }
+        });
+        </script>
+{% endblock %}       

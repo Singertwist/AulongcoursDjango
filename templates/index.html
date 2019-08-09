@@ -15,7 +15,9 @@ Aulongcours.net - Blog de voyage
                 <div class="camera_wrap camera_charcoal_skin" id="camera_wrap_1">
                   
                 {% for article in tous_articles|slice:":7" %}
-                 <div data-thumb="{{ article.image.url }}" data-src="{{ article.image.url }}">
+                {% thumbnail article.image "1000x750" crop="center" as im %}  
+                    <div data-thumb="{{im.url }}" data-src="{{ article.image.url }}">
+                {% endthumbnail %}
                     <div class="camera_caption fadeFromBottom">
                         {{ article.content|striptags|safe|truncatewords:20 }}. <a href="{% url 'article' article.slug article.id %}">Lire la suite</a>
                     </div>

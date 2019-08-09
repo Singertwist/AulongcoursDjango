@@ -65,9 +65,9 @@ input[type="submit"]
     height: 50px;
     border-radius: 5px;
     border: 1px solid #959595;
-    color: #FFFFFF;
+    color: #959595;
     font-size: 13px;
-    background-color: #959595;
+    background-color: #FFFFFF;
     cursor: hand;
     transition-duration: 0.5s;
 }
@@ -76,9 +76,6 @@ input[type="submit"]:hover
 {
     cursor: pointer; 
     cursor: hand;
-    border: #222222;
-    background-color: #222222;
-    transition-duration: 0.5s;
 }
 
 textarea

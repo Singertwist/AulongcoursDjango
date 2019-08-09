@@ -24,5 +24,4 @@ urlpatterns = [
     url(r'categories/(?P<slug>.+)-(?P<id>\d+)$', views.souscategorie_display, name='souscategorie_display'),
     url(r'categories/$', views.categorie_display, name='categorie_display'),
     url(r'a-propos/$', views.apropos, name='apropos'),
-    url(r'budget/(?P<slug>.+)-(?P<article>\d+)$', views.budget, name='budget'),
 ]

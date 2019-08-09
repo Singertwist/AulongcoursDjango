@@ -49,8 +49,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'geoposition',
     'map',
-    'budget',
-
+    
 ]
 
 MIDDLEWARE = [

@@ -32,18 +32,13 @@ Aulongcours.net - {{ afficher.pays}} - {{ afficher.title}}
                 <div class="menu-side-titre">MENU de  l'ARTICLE</div>
 
                 <div class="menu-side-texte">
-                    <div class="menu-side-texte-suite"><a href="{% url 'article' afficher.slug afficher.id %}">Les Étapes</a></div>
+                    <div class="menu-side-texte-suite"><a href="{% url 'article' afficher.slug afficher.id %}">L'Article</a></div>
                     {% if portfolio.id != None %}
                     <div class="menu-side-texte-suite"><a href="{% url 'portfolio' afficher.slug afficher.id %}">Le Portfolio</a></div>
                     {% else %}
                     {% endif %}
                     {% if map.id != None %}  
                     <div class="menu-side-texte-suite"><a href="{% url 'map' afficher.slug afficher.id %}">La Carte</a></div>
-                    {% else %}
-                    {% endif %}
-                    {% if budget.id != None %} 
-                    <div class="menu-side-texte-suite"><a href="{% url 'budget' afficher.slug afficher.id %}">Le Budget</a>
-                    </div>
                     {% else %}
                     {% endif %}
                 </div>
@@ -53,6 +48,26 @@ Aulongcours.net - {{ afficher.pays}} - {{ afficher.title}}
 
             </div>
         	</div>
+
+            <div class="comments">
+                <h3>Commentaires :</h3>
+                <div class="display-comments">
+                    {% for comment in comments %}
+                    <div class="display-comment">
+                        <p>{{comment.message}}</p>
+                        <p class="comments-info">Commentaire posté par {{comment.nom}} le {{comment.timestamp| date:"l d F Y"}} à {{comment.timestamp| time:"H:i"}}</p>
+                    </div>
+                    {% empty %}
+                        <p>Pas de commentaire pour cet article</p>
+                    {% endfor %}
+                </div>
+                <h3>Poster un commentaire :</h3>
+                <form action="{% url 'article' afficher.slug afficher.id %}" method="post">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <input type="submit" value="Envoyer" />
+                </form>
+            </div>
 
 
 {% endblock %}        

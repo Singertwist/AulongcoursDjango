@@ -31,3 +31,11 @@ class Post(models.Model):
 			
 	class Meta:
 		ordering = ["-timestamp"]
+
+class Comments(models.Model):
+	nom = models.CharField(max_length=100)
+	message = models.TextField()
+	email = models.EmailField()
+	valide = models.BooleanField(default=True)
+	post_rattachement = models.ForeignKey('posts.Post', on_delete=models.CASCADE, null=True)
+	timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)

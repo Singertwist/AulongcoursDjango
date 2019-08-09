@@ -2,11 +2,10 @@ from django.contrib import admin
 
 # Register your models here.
 
-from posts.models  import Post
+from posts.models  import Post, Comments
 from categorie.models import Categorie, SubCategorie
 from portfolio.models import Portfolio, Categorieport
 from map.models import Map, Categoriemap
-from budget.models import Categoriebudget, Budget
 #from categorieportfolio.models import Categorieportfolio
 
 class PostModelAdmin(admin.ModelAdmin):
@@ -17,6 +16,13 @@ class PostModelAdmin(admin.ModelAdmin):
 
 	class Meta:
 		model = Post
+
+class CommentsModelAdmin(admin.ModelAdmin):
+	list_display = ["nom", "message", "email", "valide", "post_rattachement", "timestamp"]
+	list_filter = ["post_rattachement"]
+
+	class Meta:
+		model = Comments
 
 class PortfolioInline(admin.TabularInline):
 	#list_display = ["title", "updated", "timestamp"]
@@ -45,18 +51,12 @@ class CategoriemapAdmin(admin.ModelAdmin):
 class MapModelAdmin(admin.ModelAdmin):
 	list_display = ["nom", "position"]
 
-class BudgetInline(admin.TabularInline):
-	model = Budget
-
-class CategoriebudgetAdmin(admin.ModelAdmin):
-	inlines = [
-		BudgetInline,
-	]
 #admin.site.register(Post, MarkdownxModelAdmin)
 admin.site.register(Post, PostModelAdmin)
 admin.site.register(Categorie)
 admin.site.register(SubCategorie, SubCategorieModelAdmin)
 admin.site.register(Categorieport, CategorieportAdmin)
 admin.site.register(Categoriemap, CategoriemapAdmin)
-admin.site.register(Categoriebudget, CategoriebudgetAdmin)
+admin.site.register(Comments, CommentsModelAdmin)
+
 #admin.site.register(Portfolio)

@@ -8,13 +8,12 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
-from .models import Post
+from .models import Post, Comments
 from portfolio.models import Portfolio, Categorieport
 from categorie.models import Categorie, SubCategorie
 from map.models import Categoriemap, Map
-from budget.models import Categoriebudget, Budget
 #from categorieportfolio.models import Categorieportfolio
-from .forms import ContactForm
+from .forms import ContactForm, CommentForm
 
 def home(request):
     articles_list = Post.objects.filter(publier = 1) # Permet de montrer que les articles pas en brouillon
@@ -44,12 +43,19 @@ def article(request, article=None, slug=None, id=None):
     except ObjectDoesNotExist:
         map = None
 
-    try : 
-        budget = afficher.categoriebudget
-    except ObjectDoesNotExist:
-        budget = None
+    # Gestion du formulaire de commentaires
+    form = CommentForm(request.POST or None)
+    form.post_rattachement = 1
+    if form.is_valid():       
+        post = form.save(commit=False)
+        post.post_rattachement = afficher
+        post.save()
+        form = CommentForm()
 
-    return render(request, 'article.html', {'afficher': afficher, 'portfolio': portfolio, 'map': map, 'budget': budget})
+    # Afficher tous les commentaires relatifs à une page
+    comments = Comments.objects.filter(post_rattachement=afficher.id, valide=True)
+
+    return render(request, 'article.html', {'afficher': afficher, 'portfolio': portfolio, 'map': map, 'form': form, 'comments':comments})
 
 def portfolio(request, slug=None, article=None):
     slug = get_object_or_404(Post, slug=slug)
@@ -60,11 +66,6 @@ def portfolio(request, slug=None, article=None):
         map = slug.categoriemap
     except ObjectDoesNotExist:
         map = None
-
-    try : 
-        budget = slug.categoriebudget
-    except ObjectDoesNotExist:
-        budget = None
 
     paginator = Paginator(image_portfolio, 10)
 
@@ -78,7 +79,7 @@ def portfolio(request, slug=None, article=None):
         # If page is out of range (e.g. 9999), deliver last page of results.
         image_portfolio = paginator.page(paginator.num_pages)
         
-    return render(request, 'portfolio.html', {'portfolio': portfolio, 'image_portfolio': image_portfolio, 'slug': slug, 'map': map, 'budget':budget})
+    return render(request, 'portfolio.html', {'portfolio': portfolio, 'image_portfolio': image_portfolio, 'slug': slug, 'map': map})
 
 def map(request, slug=None, article=None):
     slug = get_object_or_404(Post, slug=slug)
@@ -90,29 +91,8 @@ def map(request, slug=None, article=None):
     except ObjectDoesNotExist:
         portfolio = None
 
-    try : 
-        budget = slug.categoriebudget
-    except ObjectDoesNotExist:
-        budget = None
+    return render(request, 'map.html', {'map': map, 'coordonnees_map': coordonnees_map, 'portfolio': portfolio})
 
-    return render(request, 'map.html', {'map': map, 'coordonnees_map': coordonnees_map, 'portfolio': portfolio, 'budget':budget})
-
-def budget(request, slug=None, article=None):
-    slug = get_object_or_404(Post, slug=slug)
-    budget = get_object_or_404(Categoriebudget, article=article)
-    chiffres_budget = budget.budget_set.all()
-
-    try :
-        portfolio = slug.categorieport
-    except ObjectDoesNotExist:
-        portfolio = None
-
-    try :
-        map = slug.categoriemap
-    except ObjectDoesNotExist:
-        map = None
-
-    return render(request, 'budget.html', {'budget': budget, 'chiffres_budget': chiffres_budget, 'portfolio': portfolio, 'map': map})
 
 def categorie_display(request, categorie=None):
     categorie = Categorie.objects.all()

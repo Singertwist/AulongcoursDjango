@@ -141,6 +141,25 @@ a:hover {
 	margin: 0;
 }
 
+.comments {
+	border-top: solid 1px;
+	width: 75%;
+	margin: auto;
+}
+
+.display-comment {
+	width: 90%;
+	padding: 5px;
+	margin: auto;
+	margin-bottom: 10px;
+	background-color: #F8F8F8;
+}
+
+.comments-info {
+	font-style: italic;
+	font-size: 12px;
+}
+
 
 @media only screen and (max-width: 699px){
 .content-display

@@ -123,14 +123,14 @@
     	margin-bottom: 0px;
     }
 
-    .articles-front-page > img {
+    .articles-front-page a > img {
     	max-width: 100%;
 		height: auto;
 		transition-duration: 1s;
 		-webkit-filter: grayscale(0%);
     }
 
-    .articles-front-page > img:hover {
+    .articles-front-page a > img:hover {
     	max-width: 100%;
 		height: auto;
 		-webkit-filter: grayscale(100%);

@@ -47,7 +47,7 @@ Aulongcours.net - Blog de voyage
             
             <div class="articles-front-page"> 
                 {% thumbnail article.image "1000x750" crop="center" as im %}            
-                <img src="{{ im.url }}">
+                <a href="{% url 'article' article.slug article.id %}"><img src="{{ im.url }}"></a>
                 {% endthumbnail %}      
                 <div class="date-articles-front-page"> Le {{ article.timestamp|date:"d E, Y" }} / {{ article.pays }}</div>
                 <h2>{{ article.title }}</h2>

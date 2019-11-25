@@ -13,23 +13,30 @@ Aulongcours.net - Catégories
 		<div class="titre-display">
 			<h1>Catégories</h1>  
 		</div>	
-        
+        {% regroup souscategorie by categorie as categorie_list %}
+            {% for categories in categorie_list %}
+                <h3>{{categories.grouper}}</h3>
+                {% for sous_categories in categories.list%}
+                    <p>{{sous_categories}}</p>
+                {% endfor %}
+            {% endfor %}
         <div class="content-display">
             <div class="content-display-main">              
 
-                {% for categorie in categorie %}
-                        <h3 id="{{categorie.nom_categorie|cut:" "}}">{{categorie.nom_categorie}}</h2>
+                {% regroup souscategorie by categorie as categorie_list %}
+                    {% for categories in categorie_list %}
+                        <h3 id="{{categorie.nom_categorie|cut:" "}}">{{categories.grouper}}</h2>
                         <div class="categories">
                         
-                                {% for subcategorie in categorie.subcategorie_set.all %}
+                                {% for sous_categories in categories.list%}
                                 <div class="sous-categories">
-                                    <a href="{% url 'souscategorie_display' subcategorie.slug subcategorie.id %}">
-                                    {% thumbnail subcategorie.image "250x250" crop="center" as im %}
-                                    <img src="{{im.url }}" alt="{{ subcategorie.nom_subcategorie }}"/>
+                                    <a href="{% url 'souscategorie_display' sous_categories.slug sous_categories.id %}">
+                                    {% thumbnail sous_categories.image "250x250" crop="center" as im %}
+                                    <img src="{{im.url }}" alt="{{ sous_categories.nom_subcategorie }}"/>
                                     {% endthumbnail %}
                                     </a>
                                    
-                                <p><a href="{% url 'souscategorie_display' subcategorie.slug subcategorie.id %}">{{subcategorie.nom_subcategorie }}</a></p>
+                                <p><a href="{% url 'souscategorie_display' sous_categories.slug sous_categories.id %}">{{sous_categories.nom_subcategorie }}</a></p>
                                 </div>
                                 {% empty %}
 
@@ -38,10 +45,9 @@ Aulongcours.net - Catégories
                                 {% endfor %}
 
                         </div>
-                        {% empty %}
-
-                            <p>Aucune catégorie.</p>
-                        {% endfor %} 
+                    {% empty %}
+                        <p>Aucune catégorie.</p>
+                    {% endfor %}
 
             </div>
 

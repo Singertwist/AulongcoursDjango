@@ -8,6 +8,7 @@ def upload_location(instance, filename):
 # Create your models here.
 class Categorie(models.Model):
 	nom_categorie = models.CharField(max_length= 255)
+	is_active = models.BooleanField(verbose_name="Catégorie active")
 
 	def __unicode__(self):
 		return self.nom_categorie
@@ -23,6 +24,7 @@ class SubCategorie(models.Model):
 	slug = models.SlugField(max_length=200)
 	categorie = models.ForeignKey('categorie.Categorie', on_delete=models.CASCADE)
 	image = models.ImageField(upload_to=upload_location)
+	is_active = models.BooleanField(verbose_name="Sous-Catégorie active")
 
 	def __unicode__(self):
 		return self.nom_subcategorie

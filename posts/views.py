@@ -95,11 +95,11 @@ def map(request, slug=None, article=None):
 
 
 def categorie_display(request, categorie=None):
-    categorie = Categorie.objects.all()
-    return render(request, 'categorie.html', {'categorie': categorie})
+    souscategorie = SubCategorie.objects.filter(is_active=1)
+    return render(request, 'categorie.html', {'souscategorie':souscategorie})
 
 def souscategorie_display(request, id=None, categorie=None, slug=None):
-    souscategorie = get_object_or_404(SubCategorie, id=id)
+    souscategorie = get_object_or_404(SubCategorie, id=id, is_active=1)
     articles_list = Post.objects.filter(pays=souscategorie)
     paginator = Paginator(articles_list, 10)
 

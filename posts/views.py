@@ -94,8 +94,8 @@ def map(request, slug=None, article=None):
     return render(request, 'map.html', {'map': map, 'coordonnees_map': coordonnees_map, 'portfolio': portfolio})
 
 
-def categorie_display(request, categorie=None):
-    souscategorie = SubCategorie.objects.filter(is_active=1)
+def categorie_display(request, souscategorie=None):
+    souscategorie = SubCategorie.objects.filter(is_active=1, categorie__is_active=1)
     return render(request, 'categorie.html', {'souscategorie':souscategorie})
 
 def souscategorie_display(request, id=None, categorie=None, slug=None):

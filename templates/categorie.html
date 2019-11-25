@@ -13,13 +13,6 @@ Aulongcours.net - Catégories
 		<div class="titre-display">
 			<h1>Catégories</h1>  
 		</div>	
-        {% regroup souscategorie by categorie as categorie_list %}
-            {% for categories in categorie_list %}
-                <h3>{{categories.grouper}}</h3>
-                {% for sous_categories in categories.list%}
-                    <p>{{sous_categories}}</p>
-                {% endfor %}
-            {% endfor %}
         <div class="content-display">
             <div class="content-display-main">              
 

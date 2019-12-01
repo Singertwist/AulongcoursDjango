@@ -18,7 +18,7 @@ Aulongcours.net - Catégories
 
                 {% regroup souscategorie by categorie as categorie_list %}
                     {% for categories in categorie_list %}
-                        <h3 id="{{categorie.nom_categorie|cut:" "}}">{{categories.grouper}}</h2>
+                        <h3 id="{{categories.grouper|cut:" "}}">{{categories.grouper}}</h2>
                         <div class="categories">
                         
                                 {% for sous_categories in categories.list%}
@@ -49,12 +49,13 @@ Aulongcours.net - Catégories
                 <div class="menu-side-titre">MENU</div>
 
                 <div class="menu-side-texte">
-                    {% for categorie in souscategorie %}
-                    <div class="menu-side-texte-suite"><a href="#{{categorie.nom_subcategorie|cut:" "}}">{{categorie.nom_subcategorie}}</a></div>
-                    {% empty %}
+                    {% regroup souscategorie by categorie as categorie_list %}
+                        {% for categories in categorie_list %}
+                         <div class="menu-side-texte-suite"><a href="#{{categories.grouper|cut:" "}}">{{categories.grouper}}</a></div>
+                        {% empty %}
 
                             <p>Aucune catégorie.</p>
-                    {% endfor %}         
+                        {% endfor %}         
                 </div>
 
                 <div class="a-propos-side-titre">A PROPOS</div>

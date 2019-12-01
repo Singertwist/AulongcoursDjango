@@ -49,8 +49,8 @@ Aulongcours.net - Catégories
                 <div class="menu-side-titre">MENU</div>
 
                 <div class="menu-side-texte">
-                    {% for categorie in categorie %}
-                    <div class="menu-side-texte-suite"><a href="#{{categorie.nom_categorie|cut:" "}}">{{categorie.nom_categorie}}</a></div>
+                    {% for categorie in souscategorie %}
+                    <div class="menu-side-texte-suite"><a href="#{{categorie.nom_subcategorie|cut:" "}}">{{categorie.nom_subcategorie}}</a></div>
                     {% empty %}
 
                             <p>Aucune catégorie.</p>

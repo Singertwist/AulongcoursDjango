@@ -7,11 +7,11 @@ def upload_location(instance, filename):
 	return "photos_portfolio/%s/%s" %(instance.categorieportfolio, filename)
 
 class Portfolio(models.Model):
-	title = models.CharField(max_length=200)
-	image = models.ImageField(upload_to=upload_location)
+	title = models.CharField(max_length=200, verbose_name="Titre")
+	image = models.ImageField(upload_to=upload_location, verbose_name="Image")
 	timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
 	updated = models.DateTimeField(auto_now=True, auto_now_add=False)
-	categorieportfolio = models.ForeignKey('Categorieport', on_delete=models.CASCADE)
+	categorieportfolio = models.ForeignKey('Categorieport', on_delete=models.CASCADE, verbose_name="Catégorie de rattachement portfolio")
 
 
 	def __unicode__(self):
@@ -19,6 +19,11 @@ class Portfolio(models.Model):
 
 	def __str__(self):
 			return self.title
+
+	class Meta:
+		ordering = ["-timestamp"]
+		verbose_name = 'Portfolio'
+		verbose_name_plural = 'Portfolios'
 			
 class Categorieport(models.Model):
 	title = models.CharField(max_length=200)
@@ -26,3 +31,7 @@ class Categorieport(models.Model):
 
 	def __str__(self):
 		return self.title
+
+	class Meta:
+		verbose_name = 'Portfolio'
+		verbose_name_plural = 'Portfolios'

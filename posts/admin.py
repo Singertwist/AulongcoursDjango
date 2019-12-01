@@ -36,7 +36,8 @@ class CategorieportAdmin(admin.ModelAdmin):
 	]
 
 class SubCategorieModelAdmin(admin.ModelAdmin):
-	list_display = ["nom_subcategorie", "categorie"]
+	list_display = ["nom_subcategorie", "categorie", "is_active"]
+	list_editable = ('is_active', )
 	prepopulated_fields = {'slug': ('nom_subcategorie', ), }
 
 class MapInline(admin.TabularInline):

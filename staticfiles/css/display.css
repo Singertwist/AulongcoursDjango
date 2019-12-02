@@ -63,6 +63,13 @@ a:hover {
     font-weight: normal;
 }
 
+.titre-display > h1 
+{
+	font-weight: normal;
+	font-size: 200%;
+	letter-spacing: 1.5pt;
+}
+
 .a-propos-side-titre {
 	border-top-style: solid;
 	border-bottom-style: solid;
@@ -115,6 +122,43 @@ a:hover {
     padding-bottom: 5px;
 }
 
+.content-display-main .map {
+	color: #999999;
+	font-weight: normal;
+	text-decoration: underline;
+	margin: 0;
+	padding: 0;
+	letter-spacing: 1pt;
+}
+
+.content-display-main #map {
+	max-width: 100%;
+    height: auto;
+}
+
+.content-display-main .map-texte {
+	padding: 0;
+	margin: 0;
+}
+
+.comments {
+	border-top: solid 1px;
+	width: 75%;
+	margin: auto;
+}
+
+.display-comment {
+	width: 90%;
+	padding: 5px;
+	margin: auto;
+	margin-bottom: 10px;
+	background-color: #F8F8F8;
+}
+
+.comments-info {
+	font-style: italic;
+	font-size: 12px;
+}
 
 
 @media only screen and (max-width: 699px){

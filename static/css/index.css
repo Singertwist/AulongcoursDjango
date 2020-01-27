@@ -18,9 +18,15 @@
 
 @font-face
     {
+        font-family: 'Haroopath';
+        src: url('fonts/Haroopath/Haroopath.otf');
+    }    	
+
+@font-face
+    {
         font-family: 'Lora';
         src: url('fonts/Lora/Lora-Regular.ttf');
-    }    	
+    }  
 
 	body
 	{
@@ -81,14 +87,15 @@
 	.logo-front-page h1 {
 		font-size: 320%;
 		margin: 0;
-		padding: 0;
+		padding: 20px 0px 0px 0px;
 	}
 
 	.logo-front-page h2 {
-		color: #3C3C3C;
-		font-family: 'Lemon';
+		font-family: 'Haroopath';
 		margin: 0;
 		padding: 15px 0 0 0;
+        color: #FF5A35;
+        font-size: 15px;
 	}
 
 	 .slider
@@ -104,9 +111,10 @@
 
     .content-front-page > h2
     {
-    	font-family: 'Lemon';
+    	font-family: 'Haroopath';
     	text-align: center;
-    	font-size: 250%;
+    	font-size: 150%;
+        color: #FF5A35;
     }
 
     .container-article-front-page {
@@ -146,17 +154,18 @@
     .articles-front-page > h2 {
     	font-size: 150%;
     	text-align: center;
+        color: #FF5A35;
     }
 
     .articles-front-page a {
         text-decoration: none;
-        color: #999999;
+        color: #FF5A35;
         transition-duration: 0.2s;
     }
 
     .articles-front-page a:hover {
         text-decoration: none;
-        color: #E1E1E1;
+        color: #FF9A42;
         transition-duration: 0.2s;
     }
 

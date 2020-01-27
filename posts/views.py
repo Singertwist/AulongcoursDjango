@@ -100,7 +100,7 @@ def categorie_display(request, souscategorie=None):
 
 def souscategorie_display(request, id=None, categorie=None, slug=None):
     souscategorie = get_object_or_404(SubCategorie, id=id, is_active=1)
-    articles_list = Post.objects.filter(pays=souscategorie)
+    articles_list = Post.objects.filter(sous_categorie=souscategorie)
     paginator = Paginator(articles_list, 10)
 
     page = request.GET.get('page')

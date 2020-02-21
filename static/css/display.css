@@ -111,6 +111,10 @@ a:hover {
 	margin-bottom: 10px;
 }
 
+.a-propos-side-texte a:hover {
+	color: #FF5A35;
+	transition-duration: 0.2s;
+}
 
 .a-propos-side-texte img{
 	width: 70%;

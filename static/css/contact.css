@@ -1,11 +1,15 @@
 .container-contact {
-    display: flex;
-    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
     margin-top: 25px;
 }
 
+.container-contact-flex {
+    display: flex;
+}
+
 .image-contact {
-    width: 50%;
+    width: 60%;
     min-height: 100%;
     background: url("../img/contact/image-contact.jpg") center center no-repeat;
     background-size: cover;}
@@ -14,18 +18,24 @@
 {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 40%;
+    padding: 25px;
 }
 
-.contact h1
-{
-    font-size: 300%;
+.container-contact > h2:first-child  {
     font-weight: normal;
-    text-align: center;
-    margin: auto;
+    margin-left: 2%;
+    padding-left: 1%;
+    padding-top: 5%;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    width: 200px;
     color: #FF5A35;
 }
 
+.container-contact h2 {
+    font-weight: normal;
+}
 
 form
 {

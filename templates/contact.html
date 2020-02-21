@@ -8,23 +8,25 @@ Aulongcours.net - Contact
 
 {% block contact %}  
 <div class="container-contact">
-	<div class="image-contact">
-	</div>
+	<h2>Nous Contacter </h2>
+	<div class="container-contact-flex">
+		<div class="image-contact">
+		</div>
 
 
-{% if envoi %}<div class="succes-contact">Votre message a bien été envoyé !</div>{% endif %}
+	{% if envoi %}<div class="succes-contact">Votre message a bien été envoyé !</div>{% endif %}
 
-	<div class="form-contact">
-		<div class="contact"> <h1>Contactez-nous</h1></div>
-		<form action="{% url 'contact' %}" method="post">
+		<div class="form-contact">
+			<form action="{% url 'contact' %}" method="post">
 
-		    {% csrf_token %}
+			    {% csrf_token %}
 
-		    {{ form.as_p }}
+			    {{ form.as_p }}
 
-		    <input type="submit" value="Envoyer" />
+			    <input type="submit" value="Envoyer" />
 
-		</form>
+			</form>
+		</div>
 	</div>
 </div>
 {% endblock %}   

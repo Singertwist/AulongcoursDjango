@@ -5,7 +5,6 @@ from django.contrib import admin
 from posts.models  import Post, Comments
 from categorie.models import Categorie, SubCategorie
 from portfolio.models import Portfolio, Categorieport
-from map.models import Map, Categoriemap
 #from categorieportfolio.models import Categorieportfolio
 
 class PostModelAdmin(admin.ModelAdmin):
@@ -40,15 +39,6 @@ class SubCategorieModelAdmin(admin.ModelAdmin):
 	list_editable = ('is_active', )
 	prepopulated_fields = {'slug': ('nom_subcategorie', ), }
 
-class MapInline(admin.TabularInline):
-	list_display = ["nom", "position"]
-	model = Map
-
-class CategoriemapAdmin(admin.ModelAdmin):
-	inlines = [
-		MapInline,
-	]
-
 class MapModelAdmin(admin.ModelAdmin):
 	list_display = ["nom", "position"]
 
@@ -57,7 +47,6 @@ admin.site.register(Post, PostModelAdmin)
 admin.site.register(Categorie)
 admin.site.register(SubCategorie, SubCategorieModelAdmin)
 admin.site.register(Categorieport, CategorieportAdmin)
-admin.site.register(Categoriemap, CategoriemapAdmin)
 admin.site.register(Comments, CommentsModelAdmin)
 
 #admin.site.register(Portfolio)

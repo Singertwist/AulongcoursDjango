@@ -46,10 +46,7 @@ INSTALLED_APPS = [
     'filer',
     'ckeditor_filebrowser_filer',
     'sorl.thumbnail',
-    'ckeditor',
-    'geoposition',
-    'map',
-    
+    'ckeditor',    
 ]
 
 MIDDLEWARE = [

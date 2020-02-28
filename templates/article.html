@@ -37,10 +37,6 @@ Aulongcours.net - {{ afficher.sous_categorie}} - {{ afficher.title}}
                     <div class="menu-side-texte-suite"><a href="{% url 'portfolio' afficher.slug afficher.id %}">Le Portfolio</a></div>
                     {% else %}
                     {% endif %}
-                    {% if map.id != None %}  
-                    <div class="menu-side-texte-suite"><a href="{% url 'map' afficher.slug afficher.id %}">La Carte</a></div>
-                    {% else %}
-                    {% endif %}
                 </div>
 
                 <div class="a-propos-side-titre">A PROPOS</div>

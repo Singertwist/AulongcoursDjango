@@ -3,7 +3,7 @@
 {% load thumbnail %}
 
 {% block titre %} 
-Aulongcours.net - {{ portfolio.article.pays}} - {{ portfolio.article.title}}
+Aulongcours.net - {{ portfolio.article.sous_categorie}} - {{ portfolio.article.title}}
 {% endblock %}        
 
 {% block portfolio %}       
@@ -73,19 +73,11 @@ Aulongcours.net - {{ portfolio.article.pays}} - {{ portfolio.article.title}}
 
                 <div class="menu-side-texte">
                     <div class="menu-side-texte-suite"><a href="{% url 'article' portfolio.article.slug portfolio.article.id %}">Les Étapes</a></div>
-                    <div class="menu-side-texte-suite"><a href="{% url 'portfolio' portfolio.article.slug portfolio.article.id %}">Le Portfolio</a></div>
-                    {% if map.id != None %} 
-                    <div class="menu-side-texte-suite"><a href="{% url 'map' slug.slug portfolio.id %}">La Carte</a></div>
-                    {% else %}
-                    {% endif %}
-                    {% if budget.id != None %} 
-                    <div class="menu-side-texte-suite"><a href="{% url 'budget' afficher.slug afficher.id %}">Le Budget</a></div>
-                    {% else %}
-                    {% endif %}                    
+                    <div class="menu-side-texte-suite"><a href="{% url 'portfolio' portfolio.article.slug portfolio.article.id %}">Le Portfolio</a></div>               
                 </div>
 
                 <div class="a-propos-side-titre">A PROPOS</div>
-                <div class="a-propos-side-texte"><img src="{% static "img/autres/P1010545.jpg" %}" alt="image-a-propos"/>« Sont réputés être voyages de long cours les voyages de France en Moscovie, Groenland, Canada, aux bancs et îles de Terre Neuve et autres côtes et îles d'Amérique, au Cap Vert, côte de Guinée et tous autres qui seront au-delà du tropique » (Colbert, 1681). <a href="{% url 'apropos' %}">Lire la suite...</a></div>
+                <div class="a-propos-side-texte"><img src="{% static "img/a-propos/img5.jpg" %}" alt="image-a-propos"/>« Sont réputés être voyages de long cours les voyages de France en Moscovie, Groenland, Canada, aux bancs et îles de Terre Neuve et autres côtes et îles d'Amérique, au Cap Vert, côte de Guinée et tous autres qui seront au-delà du tropique » (Colbert, 1681). <a href="{% url 'apropos' %}">Lire la suite...</a></div>
 
             </div>
         	</div>

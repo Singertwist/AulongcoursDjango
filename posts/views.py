@@ -11,7 +11,6 @@ from django.core.exceptions import ObjectDoesNotExist
 from .models import Post, Comments
 from portfolio.models import Portfolio, Categorieport
 from categorie.models import Categorie, SubCategorie
-from map.models import Categoriemap, Map
 #from categorieportfolio.models import Categorieportfolio
 from .forms import ContactForm, CommentForm
 
@@ -38,11 +37,6 @@ def article(request, article=None, slug=None, id=None):
     except ObjectDoesNotExist:
         portfolio = None
 
-    try : 
-        map = afficher.categoriemap
-    except ObjectDoesNotExist:
-        map = None
-
     # Gestion du formulaire de commentaires
     form = CommentForm(request.POST or None)
     form.post_rattachement = 1
@@ -55,17 +49,12 @@ def article(request, article=None, slug=None, id=None):
     # Afficher tous les commentaires relatifs à une page
     comments = Comments.objects.filter(post_rattachement=afficher.id, valide=True)
 
-    return render(request, 'article.html', {'afficher': afficher, 'portfolio': portfolio, 'map': map, 'form': form, 'comments':comments})
+    return render(request, 'article.html', {'afficher': afficher, 'portfolio': portfolio, 'form': form, 'comments':comments})
 
 def portfolio(request, slug=None, article=None):
     slug = get_object_or_404(Post, slug=slug)
     portfolio = get_object_or_404(Categorieport, article=article)
     image_portfolio = portfolio.portfolio_set.all()
-
-    try :
-        map = slug.categoriemap
-    except ObjectDoesNotExist:
-        map = None
 
     paginator = Paginator(image_portfolio, 10)
 
@@ -79,19 +68,7 @@ def portfolio(request, slug=None, article=None):
         # If page is out of range (e.g. 9999), deliver last page of results.
         image_portfolio = paginator.page(paginator.num_pages)
         
-    return render(request, 'portfolio.html', {'portfolio': portfolio, 'image_portfolio': image_portfolio, 'slug': slug, 'map': map})
-
-def map(request, slug=None, article=None):
-    slug = get_object_or_404(Post, slug=slug)
-    map = get_object_or_404(Categoriemap, article=article)
-    coordonnees_map = map.map_set.all()
-
-    try :
-        portfolio = slug.categorieport
-    except ObjectDoesNotExist:
-        portfolio = None
-
-    return render(request, 'map.html', {'map': map, 'coordonnees_map': coordonnees_map, 'portfolio': portfolio})
+    return render(request, 'portfolio.html', {'portfolio': portfolio, 'image_portfolio': image_portfolio, 'slug': slug})
 
 
 def categorie_display(request, souscategorie=None):
